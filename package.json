@@ -1,9 +1,8 @@
 {
-  "name": "magnolia-headless-tools",
+  "name": "@neoskop/magnolia-headless-tools",
   "version": "0.0.1",
   "repository": "git@bitbucket.org:neoskop/magnolia-headless-tools.git",
   "author": "Arne Diekmann <arne@neoskop.de>",
-  "private": true,
   "description": "",
   "main": "dist/index.js",
   "module": "dist/index.js",
