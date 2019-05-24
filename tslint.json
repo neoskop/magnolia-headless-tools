@@ -1,0 +1,22 @@
+{
+  "extends": "tslint-config-prettier",
+  "rules": {
+    "arrow-parens": false,
+    "interface-name": false,
+    "member-access": false,
+    "no-inferrable-types": [true, "ignore-params"],
+    "no-string-throw": true,
+    "no-switch-case-fall-through": true,
+    "no-use-before-declare": true,
+    "object-literal-sort-keys": false,
+    "quotemark": [true, "single"],
+    "trailing-comma": false,
+    "variable-name": [
+      true,
+      "ban-keywords",
+      "check-format",
+      "allow-leading-underscore",
+      "allow-pascal-case"
+    ]
+  }
+}

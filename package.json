@@ -1,0 +1,52 @@
+{
+  "name": "magnolia-headless-tools",
+  "version": "0.0.1",
+  "repository": "git@bitbucket.org:neoskop/magnolia-headless-tools.git",
+  "author": "Arne Diekmann <arne@neoskop.de>",
+  "private": true,
+  "description": "",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "homepage": "https://neolabs.io",
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=8.12.0"
+  },
+  "scripts": {
+    "build": "rimraf dist && tsc -p tsconfig.json",
+    "lint": "tslint -p tslint.json",
+    "test": "nyc mocha --require ts-node/register --require source-map-support/register --recursive src/**/*.spec.ts"
+  },
+  "dependencies": {
+    "bluebird": "3.5.4",
+    "fs-extra": "8.0.1",
+    "request": "2.88.0",
+    "retry": "0.12.0",
+    "winston": "3.2.1"
+  },
+  "devDependencies": {
+    "@types/bluebird": "3.5.26",
+    "@types/fs-extra": "7.0.0",
+    "@types/request": "2.48.1",
+    "@types/retry": "0.12.0",
+    "@types/winston": "^2.4.4",
+    "nodemon": "1.19.0",
+    "rimraf": "2.6.3",
+    "ts-node": "8.1.0",
+    "tslint": "5.16.0",
+    "typescript": "3.4.5"
+  },
+  "nyc": {
+    "extension": [
+      ".ts",
+      ".tsx"
+    ],
+    "exclude": [
+      "**/*.d.ts",
+      "**/*.spec.ts",
+      "**/*.js"
+    ],
+    "all": true
+  }
+}
