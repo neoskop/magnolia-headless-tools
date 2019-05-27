@@ -13,7 +13,11 @@ export function fetchDamAssets(
   return new Promise(resolve => {
     const operation = retry.operation();
     const damUrl = options.magnolia.url + options.magnolia.damJsonEndpoint;
-    const limit = pLimit.default(5);
+    const limit = pLimit.default(
+      options && options.magnolia.damConcurrency
+        ? options.magnolia.damConcurrency
+        : 10
+    );
 
     request.get(
       damUrl,
@@ -63,11 +67,7 @@ export function fetchDamAssets(
             assetsNeedingUpdate.map(asset =>
               limit(
                 (): Promise<void> => {
-                  return new Promise(resolve => {
-                    downloadAsset(options, asset).then(() =>
-                      setTimeout(resolve, 100)
-                    );
-                  });
+                  return downloadAsset(options, asset);
                 }
               )
             )
