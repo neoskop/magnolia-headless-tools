@@ -61,9 +61,15 @@ export function fetchDamAssets(
 
           await Promise.all(
             assetsNeedingUpdate.map(asset =>
-              limit(async () => {
-                downloadAsset(options, asset);
-              })
+              limit(
+                (): Promise<void> => {
+                  return new Promise(resolve => {
+                    downloadAsset(options, asset).then(() =>
+                      setTimeout(resolve, 100)
+                    );
+                  });
+                }
+              )
             )
           ).catch(error => {
             logger.error(error);
