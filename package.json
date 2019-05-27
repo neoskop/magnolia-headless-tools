@@ -19,21 +19,21 @@
     "test": "nyc mocha --require ts-node/register --require source-map-support/register --recursive src/**/*.spec.ts"
   },
   "dependencies": {
-    "bluebird": "3.5.4",
+    "bluebird": "3.5.5",
     "fs-extra": "8.0.1",
     "request": "2.88.0",
     "retry": "0.12.0",
     "winston": "3.2.1"
   },
   "devDependencies": {
-    "@types/bluebird": "3.5.26",
+    "@types/bluebird": "3.5.27",
     "@types/fs-extra": "7.0.0",
     "@types/request": "2.48.1",
     "@types/retry": "0.12.0",
     "@types/winston": "^2.4.4",
-    "nodemon": "1.19.0",
+    "nodemon": "1.19.1",
     "rimraf": "2.6.3",
-    "ts-node": "8.1.0",
+    "ts-node": "8.2.0",
     "tslint": "5.16.0",
     "typescript": "3.4.5"
   },
