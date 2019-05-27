@@ -9,10 +9,6 @@ export interface MagnoliaSourceOptions {
       header: string;
     };
   };
-  queue: {
-    uri: string;
-    exchangeName?: string;
-  };
   name?: string;
   sourceFactory?: any;
   output: {
