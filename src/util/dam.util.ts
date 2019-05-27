@@ -1,5 +1,6 @@
 import { reject } from 'bluebird';
 import * as fs from 'fs-extra';
+import * as pLimit from 'p-limit';
 import * as request from 'request';
 import * as retry from 'retry';
 import { MagnoliaSourceOptions } from '../interfaces/magnolia-source-options.interface';
@@ -12,6 +13,7 @@ export function fetchDamAssets(
   return new Promise(resolve => {
     const operation = retry.operation();
     const damUrl = options.magnolia.url + options.magnolia.damJsonEndpoint;
+    const limit = pLimit.default(5);
 
     request.get(
       damUrl,
@@ -58,7 +60,11 @@ export function fetchDamAssets(
           });
 
           await Promise.all(
-            assetsNeedingUpdate.map(asset => downloadAsset(options, asset))
+            assetsNeedingUpdate.map(asset =>
+              limit(async () => {
+                downloadAsset(options, asset);
+              })
+            )
           ).catch(error => {
             logger.error(error);
           });
