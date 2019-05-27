@@ -35,6 +35,7 @@
     "rimraf": "2.6.3",
     "ts-node": "8.2.0",
     "tslint": "5.16.0",
+    "tslint-config-prettier": "1.18.0",
     "typescript": "3.4.5"
   },
   "nyc": {
