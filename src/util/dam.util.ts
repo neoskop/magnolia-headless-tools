@@ -1,4 +1,3 @@
-import { reject } from 'bluebird';
 import * as fs from 'fs-extra';
 import * as pLimit from 'p-limit';
 import * as request from 'request';
@@ -107,7 +106,7 @@ function downloadAsset(
   options: MagnoliaSourceOptions,
   asset: any
 ): Promise<void> {
-  return new Promise(resolve => {
+  return new Promise((resolve, reject) => {
     if (asset) {
       const filePath = options.output.assets + asset.path;
       const directory = filePath
