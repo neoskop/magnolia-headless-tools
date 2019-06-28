@@ -16,7 +16,8 @@
   "scripts": {
     "build": "rimraf dist && tsc -p tsconfig.json",
     "lint": "tslint -p tslint.json",
-    "test": "nyc mocha --require ts-node/register --require source-map-support/register --recursive src/**/*.spec.ts"
+    "test": "nyc mocha --require ts-node/register --require source-map-support/register --recursive src/**/*.spec.ts",
+    "prepare": "yarn build"
   },
   "dependencies": {
     "bluebird": "3.5.5",
