@@ -34,15 +34,10 @@ export function generate(options: MagnoliaSourceOptions): Promise<void> {
         []
       )
     );
-    const match = JSON.stringify(nodes).match(
-      /jcr:([0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12})/g
+    const assetsMatcher = /((?<=jcr:)|(?<=link:{uuid:{))([0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12})/g;
+    const damUuids: string[] = uniqueArray<string>(
+      JSON.stringify(nodes).match(assetsMatcher) || []
     );
-
-    let damUuids = match ? match.map(id => id.substring(4)) : [];
-    damUuids = damUuids.filter((id, pos) => {
-      return damUuids.indexOf(id) === pos;
-    });
-
     const damAssets = await fetchDamAssets(damUuids, options);
     const pagesObj: any = pages.map((page: any) =>
       sanitizeJson(page, damAssets, pages, options, workspaces)
@@ -70,4 +65,8 @@ export function generate(options: MagnoliaSourceOptions): Promise<void> {
 
     resolve();
   });
+}
+
+function uniqueArray<T>(arr: T[]): T[] {
+  return [...new Set(arr)];
 }
