@@ -17,7 +17,8 @@
     "build": "rimraf dist && tsc -p tsconfig.json",
     "lint": "tslint -p tslint.json",
     "test": "nyc mocha --require ts-node/register --require source-map-support/register --recursive src/**/*.spec.ts",
-    "prepare": "yarn build"
+    "prepare": "yarn run snyk-protect && yarn build",
+    "snyk-protect": "snyk protect"
   },
   "dependencies": {
     "bluebird": "3.7.1",
@@ -25,6 +26,7 @@
     "p-limit": "2.2.1",
     "request": "2.88.0",
     "retry": "0.12.0",
+    "snyk": "1.242.0",
     "winston": "3.2.1"
   },
   "devDependencies": {
@@ -51,5 +53,6 @@
       "**/*.js"
     ],
     "all": true
-  }
+  },
+  "snyk": true
 }
