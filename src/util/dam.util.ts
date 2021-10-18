@@ -4,6 +4,7 @@ import * as request from 'request';
 import * as retry from 'retry';
 import { MagnoliaSourceOptions } from '../interfaces/magnolia-source-options.interface';
 import { logger } from './logger';
+import { TIMEOUT } from './timeout';
 
 export function fetchDamAssets(
   uuids: string[],
@@ -26,7 +27,7 @@ export function fetchDamAssets(
           Authorization: options.magnolia.auth.header,
           'User-Agent': 'Paperboy'
         },
-        timeout: 60 * 1000
+        timeout: TIMEOUT
       },
       async (err, res, body) => {
         if (operation.retry(err)) {
@@ -122,7 +123,7 @@ function downloadAsset(
             Authorization: options.magnolia.auth.header,
             'User-Agent': 'Paperboy'
           },
-          timeout: 60 * 1000
+          timeout: TIMEOUT
         })
         .on('response', res => {
           res.pipe(fs.createWriteStream(filePath));
