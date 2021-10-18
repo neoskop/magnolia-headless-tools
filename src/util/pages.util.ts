@@ -4,6 +4,7 @@ import * as retry from 'retry';
 import { MagnoliaLoadingParams } from '../interfaces';
 import { MagnoliaSourceOptions } from '../interfaces/magnolia-source-options.interface';
 import { logger } from './logger';
+import { TIMEOUT } from './timeout';
 
 export function fetchSitemap(
   options: MagnoliaSourceOptions
@@ -51,7 +52,7 @@ function loadDataFromMagnolia<T>(params: MagnoliaLoadingParams<T>) {
             Authorization: params.authHeader,
             'User-Agent': 'Paperboy'
           },
-          timeout: 60 * 1000
+          timeout: TIMEOUT
         },
         (error, response, body: T) => {
           const operationError =
