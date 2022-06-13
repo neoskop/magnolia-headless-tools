@@ -178,6 +178,7 @@ export function sanitizeJson(
 
             items = items.map((item: any) => {
               if (
+                typeof item === 'string' && 
                 item.match(
                   /^jcr:[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/
                 )
@@ -189,6 +190,7 @@ export function sanitizeJson(
               } else if (
                 !originalKey.match(/^@/) &&
                 !originalKey.match(/^jcr:uuid/) &&
+                typeof item === 'string' && 
                 item.match(
                   /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/
                 )
